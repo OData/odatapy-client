@@ -3,6 +3,8 @@
 :: Copyright (c) Microsoft Corporation
 :: All rights reserved. 
 
+## ARE YOU all rights reserved or are you MIT licence -- you can't be both.
+
 :: MIT License
 
 :: Permission is hereby granted, free of charge, to any person obtaining a
