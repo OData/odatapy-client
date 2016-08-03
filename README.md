@@ -5,7 +5,7 @@ ODataPy is an open-source Python library that implements the Open Data Protocol 
 
 ## Getting the source
 
-    git clone https://odatateam.visualstudio.com/DefaultCollection/_git/odatapy
+    git clone https://github.com/OData/odatapy-client.git
 
 ## Getting ODataCpp and building
 
