@@ -159,19 +159,11 @@ class codegen_initializer:
             if schema.find_container() is not None:
                 ns_entity_container = schema.get_name()
 
-        for schema in self._model.get_schema():
-            _schema_info = schema_info()
-            self._initialize_class_info(schema, _schema_info)
-            self._initialize_property_info_of_class(schema, _schema_info)
-            self._code_gen_map[schema.get_name()] = _schema_info
-
         total = schema_info()
-        for schema in self._code_gen_map:
-            _schema_info = self._code_gen_map[schema]
-            total.class_property_map.update(_schema_info.class_property_map)
-            total.class_map.update(_schema_info.class_map)
-            total.class_list += _schema_info.class_list
-            total.derived_classes.update(_schema_info.derived_classes)
+        for schema in self._model.get_schema():
+            self._initialize_class_info(schema, total)
+            self._initialize_property_info_of_class(schema, total)
+
         self._code_gen_map = {}
         self._code_gen_map[ns_entity_container] = total
 
