@@ -151,7 +151,7 @@ class codegen_initializer:
 
         entity_container = self._model.find_container()
         if entity_container is None:
-            print ("must have an entity container in model!")
+            print("must have an entity container in model!")
             exit(-1)
 
         ns_entity_container = ''
@@ -223,7 +223,7 @@ class codegen_initializer:
 
         entity_containers = schema.get_containers_vector()
         if len(entity_containers) > 1:
-            print "only support model with one entity container!"
+            print("only support model with one entity container!")
             exit()
         for container_type in entity_containers:
             _info = class_info()

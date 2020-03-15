@@ -24,7 +24,10 @@
 # DEALINGS IN THE SOFTWARE.
 
 import odata_client_python
-import urllib
+try:
+    from urllib import quote  # Python 2.X
+except ImportError:
+    from urllib.parse import quote  # Python 3+
 
 class odata_service_context(object):
     def __init__(self, base_address, options=odata_client_python.client_options()):
@@ -141,7 +144,7 @@ class odata_service_context(object):
             else:
                 query_ex += '&'
             query_ex += "$expand=" + expand
-        return urllib.quote(query_ex, '?$&,;=()/')
+        return quote(query_ex, '?$&,;=()/')
 
     def query(self, query_ex):
         return self._client.get_data_from_server(query_ex).get()
