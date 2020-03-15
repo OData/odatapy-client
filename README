@@ -1,0 +1,6 @@
+The code has been briefly verified on Ubuntu using both python2.7 and python3.6. 
+The odatacpp-client dependency mentioned in README.md has been replaced with the one from this branch: https://github.com/septimit/odatacpp-client/tree/compile_linux
+Use the README file from https://github.com/septimit/odatacpp-client/tree/compile_linux to odatacpp-client compiled on linux.
+
+To compile the code call 'make' command in the current directory.
+To use the code with python2.7 one needs to revert the current comments in the Makefile.
