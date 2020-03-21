@@ -37,3 +37,14 @@ test:
 #	LD_LIBRARY_PATH=${PWD}/odatacpp/output python2.7 codegen_tools.py 'https://services.odata.org/v4/(S(sbe2f21zvvhp33ytwqndereb))/TripPinServiceRW/' TripPin
 
 ## python2.7
+
+
+#
+# Alternative: compile using Swig generated the wrapper files
+#
+
+all_swig: odata_client_python.i
+	swig -python -c++ -Wall -DODATACPP_CLIENT_API -I/usr/include -Iodatacpp/include -o odata_client_python_swig_wrap.cxx $<
+	$(CXX) odata_client_python_swig_wrap.cxx -o odata_client_python_wrap.o -c -g -fPIC -shared -std=c++11 -fno-strict-aliasing -O2 -I/usr/include/python3.6 -Iodatacpp/include -I/usr/include/openssl -I/usr/include/libxml2 
+	$(CXX) odata_client_python_wrap.o -o _odata_client_python.so  -g -shared -Lodatacpp/output -L/usr/lib/x86_64-linux-gnu -lodata-client -lpython3.6 -lcpprest -lboost_system -lssl -lcrypto
+

@@ -168,5 +168,3 @@ test_runner
 *.xccheckout
 *.so
 
-# Visual studio
-*.i
