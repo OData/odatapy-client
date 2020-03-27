@@ -19,6 +19,8 @@
 %include <std_vector.i>
 %include <std_shared_ptr.i>
 
+%include <exception.i>
+
 %include <pycontainer.swg>
 
 namespace web {
@@ -26,7 +28,6 @@ namespace web {
         typedef unsigned short status_code;
     }
 }
-
 
 SHAREDPTR(odata::edm::edm_named_type)
 SHAREDPTR(odata::edm::edm_primitive_type)
@@ -113,6 +114,20 @@ namespace odata {
 %include "odata/communication/http_communication.h"
 
 %include "odata/client/odata_client_options.h"
+
+%exception odata::client::odata_client::send_data_to_server {
+  try {
+    $action
+  } catch (odata::communication::service_exception &e) {
+    std::string msg = utility::conversions::scan_string(e.what());
+    SWIG_exception(SWIG_RuntimeError, msg.c_str());
+  } catch (std::invalid_argument &e) {
+    SWIG_exception(SWIG_AttributeError, e.what());
+  } catch (std::exception &e) {
+    SWIG_exception(SWIG_RuntimeError, e.what());
+  } 
+}
+
 %include "odata/client/odata_client.h"
 
 %extend odata::edm::edm_entity_container {
@@ -186,8 +201,19 @@ namespace pplx {
  template<class _ReturnType>
  class task {
     public:
-        _ReturnType get() const throw(odata::communication::service_exception);
+   _ReturnType get() const;
  };
+}
+
+%exception pplx::task::get {
+  try {
+    $action
+  } catch (odata::communication::service_exception &e) {
+    std::string msg = utility::conversions::scan_string(e.what());
+    SWIG_exception(SWIG_RuntimeError, msg.c_str());
+  } catch (std::exception &e) {
+    SWIG_exception(SWIG_RuntimeError, e.what());
+  }
 }
 
 %template(task_edm_model) pplx::task< std::shared_ptr< ::odata::edm::edm_model > >;
