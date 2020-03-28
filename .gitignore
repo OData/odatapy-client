@@ -11,14 +11,6 @@ output
 msvc/Debug
 msvc/Release
 
-# CMake intermediate files
-CMakeCache.txt
-Testing/
-CMakeFiles/
-*.cmake
-!cmake/modules/*.cmake
-Makefile
-
 # Casablanca
 casablanca/
 
@@ -176,5 +168,3 @@ test_runner
 *.xccheckout
 *.so
 
-# Visual studio
-*.i

@@ -34,7 +34,7 @@ class codegen_writer:
 
     def begin_generate_file(self):
         if self._initializer is None:
-            print "Initialize failed"
+            print("Initialize failed")
             return
         outf = open(self._initializer.get_config().file_name + ".py", "w")
 

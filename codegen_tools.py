@@ -29,7 +29,7 @@ from codegen_writer import *
 
 def main():
     if len(sys.argv) != 3 and len(sys.argv) != 5:
-        print "Usage: python codegen_tools.py <ServiceURL> <ProxyFileName> [<Username> <Password>]"
+        print("Usage: python codegen_tools.py <ServiceURL> <ProxyFileName> [<Username> <Password>]")
         exit(-1)
 
     metadata_url = sys.argv[1]
